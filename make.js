@@ -12,8 +12,5 @@ fs.createReadStream('schools.txt')
         results.push(data);
     })
     .on('end', () => {
-        results.map(async (school) => {
-            await maker(school.School, 20);
-            await setTimeout(()=>{}, 1000)
-        })
+        Promise.all(results.map(school => {maker(school.School, 20)}))
     });
